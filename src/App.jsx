@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Landing, Login } from './pages'
+import { Error, Landing, Login } from './pages'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
 	return (
@@ -7,7 +9,9 @@ const App = () => {
 			<Routes>
 				<Route path='/' element={<Landing />}></Route>
 				<Route path='/login' element={<Login />}></Route>
+				<Route path='*' element={<Error />} />
 			</Routes>
+			<ToastContainer />
 		</BrowserRouter>
 	)
 }
