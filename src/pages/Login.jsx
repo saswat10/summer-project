@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { FormRow } from '../components'
+import { toast } from 'react-toastify'
 
 const initialState = {
 	username: '',
@@ -11,31 +12,41 @@ const Login = () => {
 	const [values, setValues] = useState(initialState)
 
 	const handleChange = (e) => {
-		console.log(e.target.value)
+		const name = e.target.name
+		const value = e.target.value
+		setValues({ ...values, [name]: value })
 	}
 
 	const onSubmit = (e) => {
 		e.preventDefault()
-		console.log(e.target)
+		const { username, password } = values
+		if (!username || !password) {
+			toast.info('Please fill out all the fields')
+		}
+	}
+	const toggleMember = () => {
+		setValues({ ...values, isStudent: !values.isStudent })
 	}
 
 	return (
-		<main className='grid h-screen bg-gray-100'>
+		<main className='grid h-screen bg-gray-200'>
 			<form
 				className='m-auto grid w-1/4 min-w-fit max-w-xs gap-3 rounded-md bg-white p-5 text-base drop-shadow-lg'
 				onSubmit={onSubmit}
 			>
 				<h1 className='mb-6 text-center text-xl font-semibold uppercase'>
-					Login
+					{values.isStudent ? 'Student Login' : 'Administrator Login'}
 				</h1>
 				<FormRow
-					name='Name'
+					labelText='Username'
+					name='username'
 					type='text'
 					value={values.username}
 					handleChange={handleChange}
 				/>
 				<FormRow
-					name='Password'
+					labelText='Password'
+					name='password'
 					type='password'
 					value={values.password}
 					handleChange={handleChange}
@@ -46,6 +57,14 @@ const Login = () => {
 				>
 					Submit
 				</button>
+				<p className='text-center '>
+					{values.isStudent
+						? 'For Administrator Login : '
+						: 'For Student Login : '}
+					<button className='font-medium text-blue-500' onClick={toggleMember}>
+						Click Here
+					</button>
+				</p>
 			</form>
 		</main>
 	)
