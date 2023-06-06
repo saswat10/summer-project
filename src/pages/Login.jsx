@@ -3,6 +3,7 @@ import { FormRow } from '../components'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginAdmin, loginStudent } from '../features/user/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 const initialState = {
 	username: '',
@@ -12,6 +13,7 @@ const initialState = {
 
 const Login = () => {
 	const [values, setValues] = useState(initialState)
+	const navigate = useNavigate()
 
 	const handleChange = (e) => {
 		const name = e.target.name
@@ -39,12 +41,20 @@ const Login = () => {
 		setValues({ ...values, isStudent: !values.isStudent })
 	}
 
+	useEffect(() => {
+		if (user) {
+			setTimeout(() => {
+				navigate('/')
+			}, 2000)
+		}
+	}, [user, navigate])
+
 	return (
 		<main className='grid h-screen bg-gray-200'>
 			<div className='m-auto grid w-1/4 min-w-fit max-w-xs gap-3 rounded-md bg-white p-5 text-base drop-shadow-lg'>
-					<h1 className='mb-3 text-center text-xl font-semibold uppercase'>
-						{values.isStudent ? 'Student Login' : 'Administrator Login'}
-					</h1>
+				<h1 className='mb-3 text-center text-xl font-semibold uppercase'>
+					{values.isStudent ? 'Student Login' : 'Administrator Login'}
+				</h1>
 				<form onSubmit={onSubmit} className='grid gap-4'>
 					<FormRow
 						labelText='Username'
@@ -71,7 +81,11 @@ const Login = () => {
 					{values.isStudent
 						? 'For Administrator Login : '
 						: 'For Student Login : '}
-					<button className='font-medium text-blue-500' onClick={toggleMember}>
+					<button
+						className='font-medium text-blue-500'
+						onClick={toggleMember}
+						disabled={isLoading}
+					>
 						Click Here
 					</button>
 				</p>
