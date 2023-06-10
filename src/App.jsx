@@ -11,6 +11,7 @@ import {
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Navbar from './components/Navbar'
+import NewTest from './pages/tests/NewTest'
 
 const App = () => {
 	return (
@@ -22,6 +23,7 @@ const App = () => {
 					<Route path='/grading' element={<Grading />} />
 					<Route path='/messages' element={<Messages />} />
 					<Route path='/results' element={<Results />} />
+					<Route path='/new-test' element={<NewTest/>}/>
 				</Route>
 				<Route path='/login' element={<Login />} />
 				<Route path='/landing' element={<Landing />} />
