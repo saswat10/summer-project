@@ -15,6 +15,6 @@ router
   .route("/:id")
   .patch(authorization,updateTest)
   .delete(authorization,deleteTest)
-  .get(authorization,getSingleTest);
+  .get(getSingleTest);
 
 export default router;
