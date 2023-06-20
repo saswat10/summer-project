@@ -15,7 +15,15 @@ const getSingleTest = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(testId)) {
     throw new BadRequestError("Not a valid test Id");
   }
-  const singleTest = await Test.findOne({ _id: testId, createdBy: teacherId });
+  let singleTest;
+  if (req.user.userRole === "admin") {
+    singleTest = await Test.findOne({ _id: testId, createdBy: teacherId });
+  } else {
+    singleTest = await Test.findOne({ _id: testId });
+    singleTest?.questions?.forEach((element) => {
+      element.answer = undefined;
+    });
+  }
   if (!singleTest) {
     throw new NotFoundError("no test found");
   }
