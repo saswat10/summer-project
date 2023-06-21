@@ -11,8 +11,8 @@ import { spawnSync } from "child_process";
   
       const { stdout } = spawnSync("python", [
         "script.py",
-        singleStudentAnswer.answer,
         question.answer,
+        singleStudentAnswer.answer,
       ]);
       const answerResult = {
         questionId: question._id,
