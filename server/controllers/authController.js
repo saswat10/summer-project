@@ -1,9 +1,6 @@
 import User from "../model/User.js";
 import { StatusCodes } from "http-status-codes";
-import {
-  BadRequestError,
-  UnauthenticatedError,
-} from "../errors/index.js";
+import { BadRequestError, UnauthenticatedError } from "../errors/index.js";
 
 // REGISTRATION CONTROLLER
 
@@ -19,9 +16,7 @@ const register = async (req, res) => {
   }
 
   const user = await User.create({ name, email, password });
-  res
-    .status(StatusCodes.CREATED)
-    .json({ user });
+  res.status(StatusCodes.CREATED).json({ user });
 };
 
 //LOGIN CONTROLLER
@@ -43,6 +38,5 @@ const login = async (req, res) => {
   user.password = undefined;
   res.status(StatusCodes.OK).json({ user, token });
 };
-
 
 export { register, login };
