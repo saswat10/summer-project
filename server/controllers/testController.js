@@ -71,7 +71,7 @@ const deleteTest = async (req, res) => {
     throw new NotFoundError(`No test with id ${testId}`);
   }
   checkPermissions(req.user.userId, test.createdBy);
-  await test.remove();
+  await  Test.deleteOne({ _id: testId });
   res
     .status(StatusCodes.CREATED)
     .json({ msg: "Test deleted successFully successfully" });
