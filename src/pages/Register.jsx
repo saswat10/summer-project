@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { loginUser } from '../features/userSlice'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-hot-toast'
+import { registerUser } from '../features/userSlice'
 
-const Login = () => {
+const Register = () => {
 	const initialState = {
+		name: '',
 		email: '',
 		password: '',
 	}
@@ -22,36 +21,42 @@ const Login = () => {
 	}
 
 	//function to handle the submit
-	const { user, isLoading } = useSelector((state) => state.user)
 	const dispatch = useDispatch()
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		const { email, password } = values
-		if (!email || !password) {
-			toast.error('Enter all the values')
+		const { name, email, password } = values
+		if (!name || !email || !password) {
+			console.log('Enter all the values')
 			return
 		}
-		dispatch(loginUser({ email, password }))
+		dispatch(registerUser({ name, email, password }))
 		// console.log(user)
 	}
-
-	const navigate = useNavigate()
-	//useEffect which always checks whether there was a previous user
-	useEffect(() => {
-		if (user) {
-			setTimeout(() => {
-				navigate('/')
-			}, 2000)
-		}
-	}, [user, navigate])
-
 	return (
 		<main className='flex center'>
 			<section className='container'>
-				<h2 className='text-center h-4'>LOGIN</h2>
+				<h2 className='h-4 text-center'>REGISTER</h2>
 				<form onSubmit={handleSubmit} className='grid'>
+					{/* Name */}
+					<label htmlFor='name' className='p-1 h-2 bold'>
+						Name:
+					</label>
+					<input
+						type='text'
+						id='name'
+						name='name'
+						value={values.name}
+						onChange={handleChange}
+						required
+						autoComplete='off'
+						className='input'
+						
+					/>
+
 					{/* Email */}
-					<label htmlFor='email' className='p-1 h-2 bold'>Email:</label>
+					<label htmlFor='email' className='p-1 h-2 bold'>
+						Email:
+					</label>
 					<input
 						type='email'
 						id='email'
@@ -62,7 +67,6 @@ const Login = () => {
 						autoComplete='off'
 						className='input'
 					/>
-
 					{/* Password */}
 					<label htmlFor='password' className='p-1 h-2 bold'>Password:</label>
 					<input
@@ -75,21 +79,19 @@ const Login = () => {
 						required
 						className='input'
 					/>
+
 					<br />
 					{/* Submit Button */}
-					<button type='submit' disabled={isLoading} className='btn-primary'>
-						Login
-					</button>
+					<button type='submit' className='btn-primary'>Register</button>
 				</form>
 				<br />
 				<hr />
 				<p className='text-center'>
-					Not Registered Yet?
-					<br />
-					<Link to='/register' className='link'>Register Here</Link>
+					Already Registered?<br />
+					<Link to='/login' className='link'>Login Here</Link>
 				</p>
 			</section>
 		</main>
 	)
 }
-export default Login
+export default Register

@@ -1,36 +1,33 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Error, Landing, Login } from './pages'
-import {
-	CreateTest,
-	WriteTest,
-	Grading,
-	Messages,
-	Results,
-	SharedLayout,
-} from './pages/dashboard'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import Navbar from './components/Navbar'
-import NewTest from './pages/tests/NewTest'
+import { Routes, Route } from 'react-router-dom'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import { Toaster } from 'react-hot-toast'
+import TestsList from './pages/TestPages/TestsList'
+import SingleTestPage from './pages/TestPages/SingleTestPage'
+import CreateTest from './pages/TestPages/CreateTest'
+import SharedLayout from './pages/SharedLayout'
 
-const App = () => {
+function App() {
 	return (
-		<BrowserRouter>
+		<>
 			<Routes>
-				<Route path='/' element={<SharedLayout />}>
-					<Route index element={<CreateTest />} />
-					<Route path='/write-test' element={<WriteTest />} />
-					<Route path='/grading' element={<Grading />} />
-					<Route path='/messages' element={<Messages />} />
-					<Route path='/results' element={<Results />} />
-					<Route path='/new-test' element={<NewTest/>}/>
-				</Route>
+				{/* Public Routes - accessible to everyone */}
 				<Route path='/login' element={<Login />} />
-				<Route path='/landing' element={<Landing />} />
-				<Route path='*' element={<Error />} />
+				<Route path='/register' element={<Register />} />
+
+				{/* Routes available only to the Teacher aka admin role */}
+				<Route path='/' element={<SharedLayout/>}>
+					<Route index element={<TestsList />} />
+					<Route path='/tests/:testId' element={<SingleTestPage />} />
+					<Route path='/create-test' element={<CreateTest />} />
+				</Route>
+				{/* Routes available to both the teacher and the students */}
 			</Routes>
-			<ToastContainer />
-		</BrowserRouter>
+			<Toaster
+				toastOptions={{ style: { background: '#d4deb8', color: '#060703' } }}
+			/>
+		</>
 	)
 }
+
 export default App

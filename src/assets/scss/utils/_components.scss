@@ -1,0 +1,96 @@
+@use '../globals/variables' as v;
+btn {
+	padding: 0.25rem 1rem;
+	border: none;
+	border-radius: 0.25rem;
+	margin-inline: 0.5rem;
+}
+btn:focus,
+btn:active,
+btn:hover {
+	cursor: pointer;
+	box-shadow: 1px 1px 8px 3px #33333333;
+}
+
+.btn-primary {
+	background-color: v.$primary-button;
+	color: v.$background;
+	@extend btn;
+}
+
+.link {
+	font-family: v.$font-heading;
+	text-decoration: none;
+	color: v.$primary-button;
+}
+
+.link:active,
+.link:hover,
+.link:focus {
+	text-decoration: underline;
+	color: v.$accent;
+}
+
+.container {
+	background-color: v.$secondary-button;
+	padding: 0.75rem 2rem;
+	border-radius: 1rem;
+}
+
+main {
+	height: 100vh;
+	width: 100%;
+}
+
+.input {
+	margin: 0.5rem 0.5rem;
+	background-color: v.$background;
+	border: 1px solid v.$background;
+	border-radius: 0.25rem;
+}
+.input:disabled {
+	background-color: v.$secondary-button;
+	border: 1px solid v.$background;
+	opacity: 50%;
+}
+
+.article {
+	margin-inline: auto;
+	// border:1px solid red;
+	min-width: 50rem;
+	max-width: 53.125rem;
+	padding: 1rem;
+}
+
+.list-container {
+	background-color: v.$secondary-button;
+	margin: 0.5rem 0.5rem;
+	display: flex;
+	justify-content: space-between;
+	border-radius: 0.25rem;
+}
+
+.nav-container {
+	background-color: v.$accent;
+	position: sticky;
+  height: 4rem;
+	top: 0;
+  margin-bottom: 2rem;
+  box-shadow: 1px 1px 10px 10px #33333333;
+}
+
+.nav-link{
+  margin:1rem 0.5rem;
+  font-family: v.$font-heading;
+  color:v.$background;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}
+
+.nav-link:active,
+.nav-link:hover,
+.nav-link:focus {
+	text-decoration: underline;
+	color: v.$secondary-button;
+}

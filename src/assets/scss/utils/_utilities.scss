@@ -1,0 +1,49 @@
+@use '../globals/variables' as v;
+
+@for $i from 1 through 5 {
+	.h-#{$i} {
+		font-size: $i * 0.5rem;
+		font-family: v.$font-heading;
+	}
+}
+
+@for $i from 1 through 5 {
+	.p-#{$i} {
+		padding: $i * 0.55rem;
+	}
+}
+@for $i from 1 through 5 {
+	.m-#{$i} {
+		margin: $i * 0.75rem;
+	}
+}
+
+
+
+.flex{
+  display: flex;
+}
+.center{
+  align-items: center;
+  justify-content: center;
+}
+
+.grid{
+  display: grid;
+}
+
+.bold {
+  font-weight: bold;
+}
+.text-center{
+  text-align: center;
+}
+.italic{
+  font-style: italic;
+}
+.text{
+  font-family: v.$font-body;
+}
+.text-secondary{
+  font-family: v.$font-heading;
+}
