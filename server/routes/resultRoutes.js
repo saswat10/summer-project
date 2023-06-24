@@ -3,7 +3,7 @@ import { calculateSingleResult, createJsonFileofResult } from "../controllers/re
 
 const router = express.Router();
 
-router.route("/cal-single-result/:testId").get(calculateSingleResult);
+router.route("/cal-single-result/:testId").post(calculateSingleResult);
 router.route('/create-json/:testId').get(createJsonFileofResult)
 
 export default router;
