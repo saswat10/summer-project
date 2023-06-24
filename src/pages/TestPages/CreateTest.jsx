@@ -1,10 +1,12 @@
 import { nanoid } from '@reduxjs/toolkit'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { createTest } from '../../features/testsSlice'
 import { toast } from 'react-hot-toast'
+import { useCreateTestMutation, useGetTestsQuery } from '../../App/apiSlice'
 
 const CreateTest = () => {
+	const [createTest] = useCreateTestMutation()
+	const { refetch } = useGetTestsQuery()
+
 	const testInitialState = {
 		name: '',
 		status: false,
@@ -37,21 +39,30 @@ const CreateTest = () => {
 		console.log(questionsList)
 	}
 
-	const dispatch = useDispatch()
-	const handleSubmitRequest = () => {
-		if (!testName.name || !questions) {
+	const handleSubmitRequest = async () => {
+		if (!testName.name || questionsList.length === 0)
 			toast.error('Please Provide All The Values')
+		else {
+			try {
+				await createTest({
+					name: testName.name,
+					questions: questionsList,
+				})
+					.unwrap()
+					.then(() => refetch())
+				toast.loading('Processing Request', { duration: 500 })
+				setTimeout(() => toast.success('Test created Successfully', {}), 500)
+				setQuestions(qna)
+				setQuestionsList([])
+				setTestName(testInitialState)
+			} catch (error) {
+				toast.error('Failed to create Test', error)
+			}
 		}
-		dispatch(createTest({ name: testName.name, questions: questionsList }))
-		console.log(testName.name, questionsList)
-		setQuestions({ question: '', answer: '', id: '' })
-		setTestName({ name: '', status: false })
-		setQuestionsList([])
-		setTimeout(()=>window.location.reload(),6000)
-		
 	}
+
 	return (
-		<main className='flex center' style={{height:'100%'}}>
+		<main className='flex center' style={{ height: '100%' }}>
 			<section>
 				<h2 className='text-center h-4'>CREATE TEST</h2>
 				<br />
@@ -125,9 +136,13 @@ const CreateTest = () => {
 							</section>
 						)
 					})}
-				<button type='button' onClick={handleSubmitRequest} className='btn-primary'>
-					Create test
-				</button>
+					<button
+						type='button'
+						onClick={handleSubmitRequest}
+						className='btn-primary'
+					>
+						Create test
+					</button>
 				</article>
 			</section>
 		</main>

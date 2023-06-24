@@ -45,8 +45,9 @@ main {
 .input {
 	margin: 0.5rem 0.5rem;
 	background-color: v.$background;
-	border: 1px solid v.$background;
+	border: 1px solid v.$primary-button;
 	border-radius: 0.25rem;
+	resize: none;
 }
 .input:disabled {
 	background-color: v.$secondary-button;
