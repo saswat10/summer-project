@@ -3,8 +3,15 @@ import { DateTime } from 'luxon'
 import { useGetTestsQuery, useDeleteTestMutation } from '../../App/apiSlice'
 import { toast } from 'react-hot-toast'
 
+
 const TestsList = () => {
-	const { data: tests, isLoading, isError, error, refetch, isSuccess } = useGetTestsQuery()
+	const {
+		data: tests,
+		isLoading,
+		isError,
+		refetch,
+		isSuccess,
+	} = useGetTestsQuery()
 
 	const [deleteTest] = useDeleteTestMutation()
 	//handleDelete
@@ -30,29 +37,42 @@ const TestsList = () => {
 				<div key={_id} className='list-container p-2'>
 					<p>
 						<span className='bold text-secondary'>Test Name:</span> {name}
-					</p>
-					<Link to={`/tests/${_id}`} className='link'>
-						View Test
-					</Link>
-					<button type='button' onClick={() => handleDelete(_id)} className='btn-primary'>
-						Delete
-					</button>
-					<p className='text-secondary'>
-						Last Modified:{' '}
-						<span
-							className='italic
+						<p className='text-secondary'>
+							Last Modified:{' '}
+							<span
+								className='italic
 					'
-						>
-							{DateTime.fromISO(updatedAt).toFormat('dd LLL yyyy, T')}
-						</span>
+							>
+								{DateTime.fromISO(updatedAt).toFormat('dd LLL yyyy, T')}
+							</span>
+						</p>
 					</p>
+					<span className='flex center'>
+						<Link to={`/tests/${_id}`} className='btn-primary'>
+							View
+						</Link>
+						<Link to={`/tests/${_id}`} className='btn-secondary'>
+							Edit
+						</Link>
+						<p
+							onClick={() => handleDelete(_id)}
+							className='btn-secondary'
+						>
+							Delete
+						</p>
+					</span>
 				</div>
 			)
 		})
 		content = loadedTests
 	}
+
 	if (isError) {
-		content = <p className='bold text-center'>{error.status}:{error.error} <br /> Check your Internet Connection</p>
+		content = (
+			<p className='bold text-center'>
+				Sorry some error occurred, Please Login again
+			</p>
+		)
 	}
 
 	return (

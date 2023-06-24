@@ -64,9 +64,9 @@ const userSlice = createSlice({
 				console.log(payload)
 				toast.success(`Welcome ${user.user.name}`)
 			})
-			.addCase(loginUser.rejected, (state, { payload }) => {
+			.addCase(loginUser.rejected, (state, action) => {
 				state.isLoading = false
-				console.log({ payload })
+				toast.error('Login Failed, Check all values')
 			})
 			.addCase(registerUser.pending, (state) => {
 				state.isLoading = true

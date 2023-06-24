@@ -78,3 +78,12 @@ select {
 		scroll-behavior: auto !important;
 	}
 }
+
+html{
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+html::-webkit-scrollbar{
+	display: none;
+	scrollbar-width: none;
+}

@@ -24,7 +24,7 @@ function App() {
 				{/* Routes available to both the teacher and the students */}
 			</Routes>
 			<Toaster
-				toastOptions={{ style: { background: '#d4deb8', color: '#060703' } }}
+				toastOptions={{ style: { background: '#ecf8f1', color: '#060703' } }}
 			/>
 		</>
 	)

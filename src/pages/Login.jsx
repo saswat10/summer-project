@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { loginUser } from '../features/userSlice'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
+import { getUserFromLocalStorage } from '../utils/localStorage'
 
 const Login = () => {
 	const initialState = {
@@ -38,12 +39,12 @@ const Login = () => {
 	const navigate = useNavigate()
 	//useEffect which always checks whether there was a previous user
 	useEffect(() => {
-		if (user) {
+		if (getUserFromLocalStorage()) {
 			setTimeout(() => {
 				navigate('/')
 			}, 2000)
 		}
-	}, [user, navigate])
+	}, [user])
 
 	return (
 		<main className='flex center'>

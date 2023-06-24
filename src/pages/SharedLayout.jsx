@@ -1,10 +1,16 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { removeUserFromLocalStorage } from '../utils/localStorage'
 
 const SharedLayout = () => {
+	const navigate = useNavigate()
+	const handleLogout = () => {
+		removeUserFromLocalStorage()
+		navigate('/login')
+	}
 	return (
 		<>
 			<header className='nav-container'>
-				<nav className='flex'>
+				<nav className='grid' style={{ gridTemplateColumns: '7fr 1fr' }}>
 					<ul className=''>
 						<NavLink to='/' className='nav-link'>
 							Home
@@ -19,6 +25,9 @@ const SharedLayout = () => {
 							Results
 						</NavLink>
 					</ul>
+					<p className='nav-link text-center' onClick={handleLogout} >
+						LOGOUT
+					</p>
 				</nav>
 			</header>
 			<Outlet />
