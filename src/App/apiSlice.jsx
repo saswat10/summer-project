@@ -47,10 +47,10 @@ export const apiSlice = createApi({
 			invalidatesTags: ['Tests'],
 		}),
 		singleResult: builder.mutation({
-			query: ({ id, qList }) => ({
-				url: `/results/cal-single-result/` + id,
+			query: ({ id, singleStudentAnswers }) => ({
+				url: `/results/cal-single-result/${id}`,
 				method: 'POST',
-				body: qList,
+				body: singleStudentAnswers,
 			}),
 		}),
 	}),
@@ -62,5 +62,5 @@ export const {
 	useCreateTestMutation,
 	useDeleteTestMutation,
 	useSingleResultMutation,
-	useUpdateTestMutation
+	useUpdateTestMutation,
 } = apiSlice

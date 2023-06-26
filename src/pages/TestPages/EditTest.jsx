@@ -61,6 +61,7 @@ const EditTest = () => {
 		// }
 	}
 	console.log(response)
+	console.log(singleAnswer)
 
 	let content,
 		i = 1

@@ -13,7 +13,7 @@ const ExamEnv = () => {
 	const [submitResult, response] = useSingleResultMutation()
 
 	const [singleAnswer, setSingleAnswer] = useState({
-		questionId: '',
+		_id: '',
 		answer: '',
 	})
 	const [qList, setQList] = useState([])
@@ -31,8 +31,8 @@ const ExamEnv = () => {
 	const handleSubmit = async () => {
 		try {
 			await submitResult({
-				_id: testId,
-				body: qList,
+				id: testId,
+				singleStudentAnswers: qList,
 			})
 			toast.loading('Processing Request', { duration: 500 })
 			setTimeout(() => toast.success('Test created Successfully', {}), 500)
@@ -55,7 +55,7 @@ const ExamEnv = () => {
 							className='btn-primary'
 							onClick={() =>
 								setSingleAnswer({
-									questionId: t._id,
+									_id: t._id,
 									answer: '',
 								})
 							}
