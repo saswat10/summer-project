@@ -88,7 +88,7 @@ const Register = () => {
 				<hr />
 				<p className='text-center'>
 					Already Registered?<br />
-					<Link to='/login' className='link'>Login Here</Link>
+					<Link to='/' className='link'>Login Here</Link>
 				</p>
 			</section>
 		</main>

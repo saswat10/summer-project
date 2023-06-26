@@ -14,7 +14,7 @@ const SingleTestPage = () => {
 
 	let content
 	if (isLoading) {
-		content = <p>Loading...</p>
+		content = <p className='loader' style={{height:'500px'}}></p>
 	} else if (isSuccess) {
 		content = (
 			// {const { name, _id, questions } = test.singleTest}
@@ -32,7 +32,7 @@ const SingleTestPage = () => {
 						</section>
 					)
 				})}
-				<Link className='link p-1' to='/'>
+				<Link className='link p-1' to='/teacher'>
 					Back to Home
 				</Link>
 			</section>

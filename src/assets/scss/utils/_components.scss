@@ -5,40 +5,41 @@ btn {
 	border-radius: 0.25rem;
 	margin-inline: 0.5rem;
 	cursor: pointer;
+	font-weight: 700;
+	text-transform: uppercase;
 }
 btn:focus,
 btn:hover {
-	box-shadow: 0.1px 0.1px 10px 0.1px v.$primary-button;
+	box-shadow: 0.1px 0.1px 10px 0.1px var(--primary-button);
 }
 
 .btn-primary {
-
-	background-color: v.$primary-button;
-	color: v.$background;
+	background-color: var(--primary-button);
+	color: var(--background);
 	text-decoration: none;
 	@extend btn;
 }
 
 .btn-secondary {
 	@extend .btn-primary;
-	background-color: v.$background;
-	color: v.$primary-button;
+	background-color: var(--background);
+	color: var(--primary-button);
 }
 
 .link {
 	font-family: v.$font-heading;
 	text-decoration: none;
-	color: v.$primary-button;
+	color: var(--primary-button);
 }
 
 .link:hover,
 .link:focus {
 	text-decoration: underline;
-	color: v.$accent;
+	color: var(--accent);
 }
 
 .container {
-	background-color: v.$secondary-button;
+	background-color: var(--secondary-button);
 	padding: 0.75rem 2rem;
 	border-radius: 1rem;
 }
@@ -50,15 +51,15 @@ main {
 
 .input {
 	margin: 0.5rem 0.5rem;
-	background-color: v.$background;
-	border: 1px solid v.$primary-button;
+	background-color: var(--background);
+	border: 1px solid var(--primary-button);
 	border-radius: 0.25rem;
 	resize: none;
 }
 .input:disabled {
-	background-color: v.$secondary-button;
-	border: 1px solid v.$background;
-	opacity: 50%;
+	background-color: var(--secondary-button);
+	border: 1px solid var(--background);
+	cursor:not-allowed;
 }
 
 .article {
@@ -71,7 +72,7 @@ main {
 
 .list-container {
 	flex-wrap: nowrap;
-	background-color: v.$secondary-button;
+	background-color: var(--secondary-button);
 	margin: 0.5rem 0.5rem;
 	display: grid;
 	grid-template-columns: 2fr 1fr;
@@ -79,19 +80,19 @@ main {
 }
 
 .nav-container {
-	background-color: v.$accent;
+	background-color: var(--accent);
 	position: sticky;
-	height: 4rem;
+	height: 5\4rem;
 	top: 0;
 	margin-bottom: 2rem;
-	box-shadow: 1px 1px 10px 10px #33333333;
-	border-bottom:3px v.$secondary-button solid;
+	box-shadow: 0.1px 0.1px 15px 0.1px #111111;
+	border-bottom: 3px var(--secondary-button) solid;
 }
 
 .nav-link {
 	margin: 1rem 0.5rem;
 	font-family: v.$font-heading;
-	color: v.$background;
+	color: var(--background);
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 1.1rem;
@@ -102,5 +103,26 @@ main {
 .nav-link:hover,
 .nav-link:focus {
 	text-decoration: underline;
-	color: v.$secondary-button;
+	color: var(--secondary-button);
+}
+
+.loader {
+	margin-top: 2rem;
+	// background-color: var(--primary-button);
+	aspect-ratio: 1/1;
+	border-radius: 50%;
+	border: 10px solid var(--secondary-button);
+	border-top: 10px solid var(--primary-button);
+	animation: spin 2s  linear infinite;
+}
+
+@keyframes spin {
+	0% {transform: rotate(0deg);}
+	100% {transform: rotate(360deg);}
+}
+
+.q-list-container{
+	display: grid;
+	grid-template-columns: repeat(16, 1fr);
+	padding:2rem;
 }

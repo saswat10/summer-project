@@ -3,7 +3,6 @@ import { DateTime } from 'luxon'
 import { useGetTestsQuery, useDeleteTestMutation } from '../../App/apiSlice'
 import { toast } from 'react-hot-toast'
 
-
 const TestsList = () => {
 	const {
 		data: tests,
@@ -29,9 +28,11 @@ const TestsList = () => {
 
 	let content
 	if (isLoading) {
-		content = <p>Loading</p>
+		content = <p className='loader flex center'></p>
 	} else if (isSuccess) {
-		const loadedTests = tests.tests.map((tes) => {
+		//we need to copy the array because the array is frozen in strict mode hence use slice method
+		const sortedTests = tests.tests.slice().sort((a, b) => -a.updatedAt.localeCompare(b.updatedAt))
+		const loadedTests = sortedTests.map((tes) => {
 			const { _id, name, updatedAt } = tes
 			return (
 				<div key={_id} className='list-container p-2'>
@@ -48,23 +49,26 @@ const TestsList = () => {
 						</p>
 					</p>
 					<span className='flex center'>
-						<Link to={`/tests/${_id}`} className='btn-primary'>
+						<Link to={`/teacher/tests/${_id}`} className='btn-primary'>
 							View
 						</Link>
-						<Link to={`/tests/${_id}`} className='btn-secondary'>
+						<Link to={`/teacher/tests/edit/${_id}`} className='btn-secondary'>
 							Edit
 						</Link>
-						<p
-							onClick={() => handleDelete(_id)}
-							className='btn-secondary'
-						>
+						<p onClick={() => handleDelete(_id)} className='btn-secondary'>
 							Delete
 						</p>
 					</span>
 				</div>
 			)
 		})
-		content = loadedTests
+		content = !tests.tests.length ? (
+			<p className='flex center m-4  h-3 bold text-secondary text-center'>
+				NO TESTS TO DISPLAY
+			</p>
+		) : (
+			loadedTests
+		)
 	}
 
 	if (isError) {

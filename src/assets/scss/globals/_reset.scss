@@ -38,8 +38,8 @@ body {
 	text-rendering: optimizeSpeed;
 	line-height: 1.5;
 	font-family: v.$font-body;
-	background: v.$background;
-	color:v.$text
+	background: var(--background);
+	color: var(--text);
 }
 
 /* A elements that don't have a class get default styles */
@@ -60,7 +60,7 @@ button,
 textarea,
 select {
 	font: inherit;
-	
+	color: var(--text);
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
@@ -79,11 +79,11 @@ select {
 	}
 }
 
-html{
+html {
 	scrollbar-width: none;
 	-ms-overflow-style: none;
 }
-html::-webkit-scrollbar{
+html::-webkit-scrollbar {
 	display: none;
 	scrollbar-width: none;
 }

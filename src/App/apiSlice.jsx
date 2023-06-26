@@ -2,9 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { getUserFromLocalStorage } from '../utils/localStorage'
 
 export const apiSlice = createApi({
-	tagTypes: ['Tests'],
-	refetchOnFocus:true,
-	refetchOnReconnect:true,
+	tagTypes: ['Tests', 'Results'],
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'http://localhost:5000/api/v1/',
 		prepareHeaders: (headers) => {
@@ -17,6 +15,8 @@ export const apiSlice = createApi({
 	}),
 	endpoints: (builder) => ({
 		getTests: builder.query({
+			refetchOnFocus: true,
+			refetchOnReconnect: true,
 			query: () => '/tests/',
 			providesTags: ['Tests'],
 		}),
@@ -38,6 +38,21 @@ export const apiSlice = createApi({
 			}),
 			invalidatesTags: ['Tests'],
 		}),
+		updateTest: builder.mutation({
+			query: ({ id, body }) => ({
+				url: `/tests/${id}`,
+				method: 'PATCH',
+				body: body,
+			}),
+			invalidatesTags: ['Tests'],
+		}),
+		singleResult: builder.mutation({
+			query: ({ id, qList }) => ({
+				url: `/results/cal-single-result/` + id,
+				method: 'POST',
+				body: qList,
+			}),
+		}),
 	}),
 })
 
@@ -46,4 +61,6 @@ export const {
 	useGetTestByIdQuery,
 	useCreateTestMutation,
 	useDeleteTestMutation,
+	useSingleResultMutation,
+	useUpdateTestMutation
 } = apiSlice

@@ -41,7 +41,7 @@ const Login = () => {
 	useEffect(() => {
 		if (getUserFromLocalStorage()) {
 			setTimeout(() => {
-				navigate('/')
+				getUserFromLocalStorage().user.role==='admin' ? navigate('/teacher') : navigate('/student')
 			}, 2000)
 		}
 	}, [user])
