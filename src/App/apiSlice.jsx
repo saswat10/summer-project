@@ -50,7 +50,7 @@ export const apiSlice = createApi({
 			query: ({ id, singleStudentAnswers }) => ({
 				url: `/results/cal-single-result/${id}`,
 				method: 'POST',
-				body: singleStudentAnswers,
+				body: {singleStudentAnswers},
 			}),
 		}),
 	}),
