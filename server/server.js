@@ -45,6 +45,10 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/tests", authentication, testRoutes);
 app.use("/api/v1/results", authentication, resultRoutes);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+});
+
 app.use(notFoundMiddleWare);
 app.use(errorHandlingMiddleware);
 
