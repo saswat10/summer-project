@@ -9,6 +9,7 @@ import SharedLayout from './pages/SharedLayout'
 import EditTest from './pages/TestPages/EditTest'
 import Exam from './pages/TestPages/Exam'
 import ExamEnv from './pages/TestPages/ExamEnv'
+import Success from './pages/TestPages/Sucess'
 
 function App() {
 	let theme = localStorage.getItem('theme')
@@ -22,7 +23,6 @@ function App() {
 				<Route path='/register' element={<Register />} />
 
 				{/* Routes available only to the Teacher aka admin role */}
-
 				<Route path='/teacher' element={<SharedLayout />}>
 					<Route index element={<TestsList />} />
 					<Route path='/teacher/tests/:testId' element={<SingleTestPage />} />
@@ -33,6 +33,7 @@ function App() {
 				{/* Routes available to both the teacher and the students */}
 				<Route path='/student' element={<Exam />} />
 				<Route path='/student/:testId' element={<ExamEnv />} />
+				<Route path='/success' element={<Success />} />
 			</Routes>
 			<Toaster
 				toastOptions={{ style: { background: '#ecf8f1', color: '#060703' } }}
