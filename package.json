@@ -6,6 +6,7 @@
   "scripts": {
     "setup-production":"npm install && npm run build  && npm run install-server",
     "install-server":"cd server && npm install",
+    "run-server":"node server.js",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
