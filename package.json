@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "setup-production":"npm install && npm run build  && npm run install-server",
-    "install-server":"cd server && npm install && pip install nltk && pip install language_tool_python",
+    "setup-production":"npm install && npm run build  && npm run install-server && pip install nltk && pip install language_tool_python",
+    "install-server":"cd server && npm install",
     "server":"cd server && node server.js",
     "dev": "vite",
     "build": "vite build",
