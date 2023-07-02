@@ -11,13 +11,13 @@ const getAnswerResult = (questions, singleStudentAnswers) => {
     let results;
     try {
       const {stdout} = spawnSync("python", [
-        "script2.py",
+        "script.py",
         question.answer,
         singleStudentAnswer.answer,
       ]);
       console.log(stdout.toString());
       const jsonresults = stdout.toString().replace('\r\n','');
-      console.log(JSON.parse(stdout.toString()));
+     /*  console.log(JSON.parse(stdout.toString())); */
       results=JSON.parse(jsonresults)
     } catch (error) {
       console.log(error);

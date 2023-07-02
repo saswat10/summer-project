@@ -81,4 +81,4 @@ I = F-(G+H)
 K = {'similarityIndex': cosine, 'totalErrors': len(
     my_matches1), 'spellingErrors': G, 'grammaticalErrors': H, 'punctuationErrors': I}
 print(json.dumps(K))
-sys.stdout.flush()
+
