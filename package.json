@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "setup-production":"npm install && npm run build  && npm run install-server && cd server && pip install --upgrade pip && pip install -r requirements.txt",
-    "install-server":"cd server && npm install",
+    "setup-production":"npm install && npm run build  && npm run install-server ",
+    "install-server":"cd server && npm install && pip install --upgrade pip  && pip install -r requirements.txt",
     "server":"cd server && node server.js",
     "dev": "vite",
     "build": "vite build",
