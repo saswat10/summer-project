@@ -10,7 +10,7 @@ const getAnswerResult = (questions, singleStudentAnswers) => {
     );
     let results;
     try {
-      const  stdout  = execSync("python", [
+      const { stdout } = spawnSync("python", [
         "script.py",
         question.answer,
         singleStudentAnswer.answer,
