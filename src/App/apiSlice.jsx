@@ -4,7 +4,7 @@ import { getUserFromLocalStorage } from '../utils/localStorage'
 export const apiSlice = createApi({
 	tagTypes: ['Tests', 'Results'],
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'https://test-portal-dize.onrender.com/api/v1',
+		baseUrl: 'http://localhost:5000/api/v1',
 		prepareHeaders: (headers) => {
 			const token = getUserFromLocalStorage().token
 			if (token) {

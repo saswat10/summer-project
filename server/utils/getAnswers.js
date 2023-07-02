@@ -1,33 +1,40 @@
-import { spawnSync } from "child_process";
+import { spawnSync, execSync } from "child_process";
 
- const getAnswerResult = (questions, singleStudentAnswers) => {
-    //comparing a single answer
-  
-    let answerResults = [];
-    for (const question of questions) {
-      const singleStudentAnswer = singleStudentAnswers.find(
-        (answer) => answer._id === question._id.toString()
-      );
-  
-      const { stdout } = spawnSync("python", [
+const getAnswerResult = (questions, singleStudentAnswers) => {
+  //comparing a single answer
+
+  let answerResults = [];
+  for (const question of questions) {
+    const singleStudentAnswer = singleStudentAnswers.find(
+      (answer) => answer._id === question._id.toString()
+    );
+    let results;
+    try {
+      const {stdout} = spawnSync("python", [
         "script.py",
         question.answer,
         singleStudentAnswer.answer,
       ]);
-      console.log('haha')
       console.log(stdout.toString());
-      const results=stdout.toString();
-      console.log(results)
-      const answerResult = {
-        questionId: question._id.toString(),
-        answer: singleStudentAnswer.answer,
-        ...results,
-      };
-      console.log(answerResult);
-      answerResults = [...answerResults, answerResult];
-      console.log(answerResults);
+      const jsonresults = stdout.toString().replace('\r\n','');
+      console.log(JSON.parse(stdout.toString()));
+      results=JSON.parse(jsonresults)
+    } catch (error) {
+      console.log(error);
     }
-    return answerResults;
-  };
+    console.log("haha");
 
-  export default getAnswerResult
+    console.log(results);
+    const answerResult = {
+      questionId: question._id.toString(),
+      answer: singleStudentAnswer.answer,
+      ...results,
+    };
+    console.log(answerResult);
+    answerResults = [...answerResults, answerResult];
+    console.log(answerResults);
+  }
+  return answerResults;
+};
+
+export default getAnswerResult;
