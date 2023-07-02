@@ -18,11 +18,13 @@ import { spawnSync } from "child_process";
       const results=stdout.toString();
       console.log(results)
       const answerResult = {
-        questionId: question._id,
+        questionId: question._id.toString(),
         answer: singleStudentAnswer.answer,
         ...results,
       };
+      console.log(answerResult);
       answerResults = [...answerResults, answerResult];
+      console.log(answerResults);
     }
     return answerResults;
   };
