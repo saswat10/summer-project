@@ -12,7 +12,7 @@ const getAllResults = (req, res) => {
 const calculateSingleResult = async (req, res) => {
 	const { singleStudentAnswers } = req.body
 	const { testId } = req.params
-	console.log(singleStudentAnswers)
+	console.log(singleStudentAnswers,'huhu')
 
 	const test = await Test.findOne({ _id: testId })
 	if (!test) {
