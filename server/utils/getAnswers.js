@@ -11,7 +11,7 @@ const getAnswerResult = (questions, singleStudentAnswers) => {
     let results;
     try {
       const {stdout} = spawnSync("python", [
-        "script.py",
+        "script2.py",
         question.answer,
         singleStudentAnswer.answer,
       ]);
