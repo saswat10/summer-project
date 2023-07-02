@@ -14,10 +14,11 @@ import { spawnSync } from "child_process";
         question.answer,
         singleStudentAnswer.answer,
       ]);
+      const results=JSON.parse(stdout.toString());
       const answerResult = {
         questionId: question._id,
         answer: singleStudentAnswer.answer,
-        ...JSON.parse(stdout.toString()),
+        ...results,
       };
       answerResults = [...answerResults, answerResult];
     }
