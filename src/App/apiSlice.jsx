@@ -4,7 +4,7 @@ import { getUserFromLocalStorage } from '../utils/localStorage'
 export const apiSlice = createApi({
 	tagTypes: ['Tests', 'Results'],
 	baseQuery: fetchBaseQuery({
-		baseUrl: '/api/v1',
+		baseUrl: 'https://test-portal-dize.onrender.com/api/v1',
 		prepareHeaders: (headers) => {
 			const token = getUserFromLocalStorage().token
 			if (token) {
@@ -21,6 +21,8 @@ export const apiSlice = createApi({
 			providesTags: ['Tests'],
 		}),
 		getTestById: builder.query({
+			refetchOnFocus: true,
+			refetchOnReconnect: true,
 			query: (id) => `/tests/${id}`,
 		}),
 		createTest: builder.mutation({

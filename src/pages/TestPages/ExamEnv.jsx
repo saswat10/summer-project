@@ -10,6 +10,7 @@ import { toast } from 'react-hot-toast'
 const ExamEnv = () => {
 	const { testId } = useParams()
 	const { data: test, isLoading } = useGetTestByIdQuery(testId)
+	console.log(test);
 	const [submitResult, response] = useSingleResultMutation()
 	// const navigate = useNavigate()
 
