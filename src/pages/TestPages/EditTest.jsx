@@ -3,7 +3,6 @@ import { useGetTestByIdQuery, useUpdateTestMutation } from '../../App/apiSlice'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { nanoid } from '@reduxjs/toolkit'
-import axios from 'axios'
 import { getUserFromLocalStorage } from '../../utils/localStorage'
 
 const EditTest = () => {

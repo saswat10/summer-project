@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import {
 	useGetTestByIdQuery,
 	useSingleResultMutation,
@@ -11,7 +11,7 @@ const ExamEnv = () => {
 	const { testId } = useParams()
 	const { data: test, isLoading } = useGetTestByIdQuery(testId)
 	const [submitResult, response] = useSingleResultMutation()
-	const navigate = useNavigate()
+	// const navigate = useNavigate()
 
 	const [singleAnswer, setSingleAnswer] = useState({
 		_id: '',
@@ -36,14 +36,14 @@ const ExamEnv = () => {
 				id: testId,
 				singleStudentAnswers: qList,
 			})
-			toast.loading('Processing Request, Please Wait', { duration: 2000 })
-			navigate('/success')
 		} catch (error) {
 			toast.error('Failed to create Test', error)
 		}
 	}
 
-	console.log(response)
+	// console.log(response)s
+	if (response.isError) toast.error(response.error.data.msg)
+	if (response.isSuccess) toast.success('Submitted Successfully')
 
 	let content,
 		i = 1
@@ -79,7 +79,7 @@ const ExamEnv = () => {
 				</h2>
 				<p className='p-1 text-secondary'>Id: {singleAnswer._id || 'ID'}</p>
 				<label htmlFor='question' className='p-1 bold h-2'>
-					Question: {singleAnswer.question ||'Question'}
+					Question: {singleAnswer.question || 'Question'}
 				</label>
 				<textarea
 					type='text'
@@ -94,7 +94,12 @@ const ExamEnv = () => {
 					className='btn-secondary'
 					type='button'
 					onClick={() => {
-						setQList(qList.concat({answer:singleAnswer.answer, _id: singleAnswer._id}))
+						setQList(
+							qList.concat({
+								answer: singleAnswer.answer,
+								_id: singleAnswer._id,
+							})
+						)
 						console.log(qList)
 					}}
 				>
