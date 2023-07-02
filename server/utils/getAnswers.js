@@ -11,7 +11,7 @@ const getAnswerResult = (questions, singleStudentAnswers) => {
     let results;
     try {
       const { stdout } = spawnSync("python", [
-        "script.py",
+        "https://test-portal-scripts.onrender.com",
         question.answer,
         singleStudentAnswer.answer,
       ]);
