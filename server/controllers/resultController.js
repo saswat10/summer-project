@@ -12,6 +12,7 @@ const getAllResults = (req, res) => {
 const calculateSingleResult = async (req, res) => {
 	const { singleStudentAnswers } = req.body
 	const { testId } = req.params
+	console.log(singleStudentAnswers)
 
 	const test = await Test.findOne({ _id: testId })
 	if (!test) {
@@ -19,6 +20,7 @@ const calculateSingleResult = async (req, res) => {
 	}
 	const { questions } = test
 	const singleStudentResult = getAnswerResult(questions, singleStudentAnswers)
+	console.log(singleStudentResult);
 	req.body.studentId = req.user.userId
 	req.body.testId = testId
 	req.body.results = singleStudentResult
