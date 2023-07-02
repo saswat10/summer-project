@@ -10,15 +10,16 @@ const getAnswerResult = (questions, singleStudentAnswers) => {
     );
     let results;
     try {
-      const {stdout} = spawnSync("python", [
+      const { stdout } = spawnSync("python", [
         "script.py",
         question.answer,
         singleStudentAnswer.answer,
       ]);
       console.log(stdout.toString());
-      const jsonresults = stdout.toString().replace('\r\n','');
-     /*  console.log(JSON.parse(stdout.toString())); */
-      results=JSON.parse(jsonresults)
+      const jsonresults = stdout.toString();
+      /*  console.log(JSON.parse(stdout.toString())); */
+      results =jsonresults;
+      console.log(results);
     } catch (error) {
       console.log(error);
     }
