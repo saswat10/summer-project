@@ -19,6 +19,7 @@ const calculateSingleResult = async (req, res) => {
 		throw new BadRequestError(`${testId} is not a valid test id`)
 	}
 	const { questions } = test
+	console.log(questions);
 	const singleStudentResult = getAnswerResult(questions, singleStudentAnswers)
 	console.log(singleStudentResult);
 	req.body.studentId = req.user.userId

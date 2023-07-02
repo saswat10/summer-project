@@ -14,6 +14,7 @@ import { spawnSync } from "child_process";
         question.answer,
         singleStudentAnswer.answer,
       ]);
+      console.log('haha')
       const results=JSON.parse(stdout.toString());
       console.log(results)
       const answerResult = {
