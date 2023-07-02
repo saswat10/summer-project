@@ -41,7 +41,7 @@ const ExamEnv = () => {
 		}
 	}
 
-	// console.log(response)s
+	console.log(response)
 	if (response.isError) toast.error(response.error.data.msg)
 	if (response.isSuccess) toast.success('Submitted Successfully')
 
