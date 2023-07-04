@@ -52,7 +52,7 @@ const TestsList = () => {
 						<Link to={`/teacher/tests/${_id}`} className='btn-primary'>
 							View
 						</Link>
-						<Link to={`/teacher/tests/edit/${_id}`} className='btn-secondary'>
+						<Link to={`/teacher/tests/edit2/${_id}`} className='btn-secondary'>
 							Edit
 						</Link>
 						<p onClick={() => handleDelete(_id)} className='btn-secondary'>

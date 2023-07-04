@@ -41,7 +41,11 @@ const ExamEnv = () => {
 		}
 	}
 
-	// console.log(response)s
+	console.log(response)
+	if(response.status === 'pending') toast('Processing Request...',{
+		icon:'⏳',
+		duration:2000,
+	})
 	if (response.isError) toast.error(response.error.data.msg)
 	if (response.isSuccess) toast.success('Submitted Successfully')
 
