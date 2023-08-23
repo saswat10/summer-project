@@ -6,10 +6,10 @@ import TestsList from './pages/TestPages/TestsList'
 import SingleTestPage from './pages/TestPages/SingleTestPage'
 import CreateTest from './pages/TestPages/CreateTest'
 import SharedLayout from './pages/SharedLayout'
-import EditTest from './pages/TestPages/EditTest'
 import Exam from './pages/TestPages/Exam'
 import ExamEnv from './pages/TestPages/ExamEnv'
 import Success from './pages/TestPages/Sucess'
+import EditList2 from './pages/TestPages/EditList2'
 
 function App() {
 	let theme = localStorage.getItem('theme')
@@ -27,7 +27,7 @@ function App() {
 					<Route index element={<TestsList />} />
 					<Route path='/teacher/tests/:testId' element={<SingleTestPage />} />
 					<Route path='/teacher/create-test' element={<CreateTest />} />
-					<Route path='/teacher/tests/edit/:testId' element={<EditTest />} />
+					<Route path='/teacher/tests/edit2/:testId' element={<EditList2 />} />
 				</Route>
 
 				{/* Routes available to both the teacher and the students */}
