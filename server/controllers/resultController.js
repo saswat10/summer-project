@@ -10,9 +10,10 @@ const getAllResults = (req, res) => {
 }
 
 const calculateSingleResult = async (req, res) => {
+	console.log("hi");
 	const { singleStudentAnswers } = req.body
 	const { testId } = req.params
-	console.log(singleStudentAnswers,'huhu')
+	console.log(singleStudentAnswers)
 
 	const test = await Test.findOne({ _id: testId })
 	if (!test) {

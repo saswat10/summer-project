@@ -11,29 +11,22 @@ const getAnswerResult = (questions, singleStudentAnswers) => {
     let results;
     try {
       const { stdout } = spawnSync("python", [
-        "script.py",
-        question.answer,
+        "script3.py",
+        question.answer[0],
+        question.answer[1],
+        question.answer[2],
         singleStudentAnswer.answer,
       ]);
-      console.log(stdout.toString());
-      const jsonresults = stdout.toString();
-      /*  console.log(JSON.parse(stdout.toString())); */
-      results =jsonresults;
-      console.log(results);
+      results =JSON.parse(stdout.toString());
     } catch (error) {
       console.log(error);
     }
-    console.log("haha");
-
-    console.log(results);
     const answerResult = {
       questionId: question._id.toString(),
       answer: singleStudentAnswer.answer,
       ...results,
     };
-    console.log(answerResult);
     answerResults = [...answerResults, answerResult];
-    console.log(answerResults);
   }
   return answerResults;
 };

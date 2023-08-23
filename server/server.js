@@ -5,10 +5,10 @@ dotenv.config();
 
 import connectDB from "./db/connectDB.js";
 import cors from "cors";
-import { dirname } from "path";
+/* import { dirname } from "path";
 import { fileURLToPath } from "url";
 import path from "path";
-
+ */
 //Routes
 import authRoutes from "./routes/authRoutes.js";
 import testRoutes from "./routes/testRoutes.js";
@@ -21,10 +21,10 @@ import authentication from "./middleware/authentication.js";
 
 const app = express();
 app.use(cors());
-const __dirname = dirname(fileURLToPath(import.meta.url));
+/* const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // only when ready to deploy
-app.use(express.static(path.resolve(__dirname, "../dist")));
+app.use(express.static(path.resolve(__dirname, "../dist"))); */
 const PORT = process.env.PORT || 5000;
 
 /* app.get("/", (req, res) => {
@@ -45,9 +45,9 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/tests", authentication, testRoutes);
 app.use("/api/v1/results", authentication, resultRoutes);
 
-app.get('*', (req, res) => {
+/* app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
-});
+}); */
 
 app.use(notFoundMiddleWare);
 app.use(errorHandlingMiddleware);
