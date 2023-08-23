@@ -8,7 +8,7 @@ const QuestSchema = new mongoose.Schema(
       trim: true,
     },
     answer: {
-      type: String,
+      type:Array,
       required: [true, "Please provide the answer"],
       trim: true,
     },

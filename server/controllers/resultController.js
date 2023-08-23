@@ -10,15 +10,19 @@ const getAllResults = (req, res) => {
 }
 
 const calculateSingleResult = async (req, res) => {
+	console.log("hi");
 	const { singleStudentAnswers } = req.body
 	const { testId } = req.params
+	console.log(singleStudentAnswers)
 
 	const test = await Test.findOne({ _id: testId })
 	if (!test) {
 		throw new BadRequestError(`${testId} is not a valid test id`)
 	}
 	const { questions } = test
+	console.log(questions);
 	const singleStudentResult = getAnswerResult(questions, singleStudentAnswers)
+	console.log(singleStudentResult);
 	req.body.studentId = req.user.userId
 	req.body.testId = testId
 	req.body.results = singleStudentResult
